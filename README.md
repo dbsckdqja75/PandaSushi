@@ -1,2 +1,2 @@
 # PandaSushi
-lint
+https://team-campfire.itch.io/pandasushi
