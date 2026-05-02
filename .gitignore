@@ -75,7 +75,7 @@ crashlytics-build.properties
 
 Assets/WIP/
 Assets/External Assets/
-Assets/02. Scripts/Extension/EncryptAES.cs
-Assets/02. Scripts/Extension/EncryptAES.cs.meta
 Logs/*
 UserSettings/*
+Assets/02. Scripts/Extension/EncryptAES.cs
+Assets/02. Scripts/Extension/EncryptAES.cs.meta
