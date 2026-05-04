@@ -5,7 +5,6 @@ using UnityEngine;
 public class Rider : MonoBehaviour
 {
     [SerializeField] float defaultSpeed = 6f;
-    [SerializeField] CustomerMotion motion;
     [SerializeField] GlobalState globalState;
 
     PickupZone targetZone;
@@ -42,8 +41,6 @@ public class Rider : MonoBehaviour
     
     IEnumerator EntranceMotion(List<Vector3> points)
     {
-        motion.OnMove();
-        
         for (int i = 0; i < points.Count; i++)
         {
             points[i].Set(points[i].x, transform.position.y, points[i].z);
@@ -74,11 +71,8 @@ public class Rider : MonoBehaviour
     
     IEnumerator LeaveMotion(List<Vector3> points)
     {
-        motion.OnMove();
-        
         transform.position = points[0];
 
-        bool isOpened = false;
         for (int i = 1; i < points.Count; i++)
         {
             while (Vector3.Distance(transform.position, points[i]) > 0.1f)
@@ -86,13 +80,6 @@ public class Rider : MonoBehaviour
                 transform.LookAt(points[i]);
                 transform.position = Vector3.MoveTowards(transform.position, points[i], defaultSpeed * globalState.riderSpeedMultiple * Time.smoothDeltaTime);
 
-                if (VectorExtensions.IsNearDistance(transform.position, exitDoor.transform.position, 2) && isOpened == false)
-                {
-                    isOpened = true;
-                    
-                    // exitDoor.Open();
-                }
-                
                 yield return new WaitForEndOfFrame();
             }
 

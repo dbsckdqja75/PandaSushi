@@ -77,5 +77,8 @@ Assets/WIP/
 Assets/External Assets/
 Logs/*
 UserSettings/*
+.idea/*
 Assets/02. Scripts/Extension/EncryptAES.cs
 Assets/02. Scripts/Extension/EncryptAES.cs.meta
+Assets/AddressableAssetsData/
+Assets/WIP.meta
