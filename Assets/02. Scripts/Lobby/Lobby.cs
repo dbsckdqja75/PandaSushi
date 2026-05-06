@@ -8,6 +8,7 @@ public class Lobby : MonoBehaviour
     [SerializeField] Animator lobbyCameraAnimator;
     
     [Space(10)]
+    [SerializeField] GameObject lobbyPanel;
     [SerializeField] Settings settingPanel;
     
     [SerializeField] Animator fridgeAnimator;
@@ -25,7 +26,11 @@ public class Lobby : MonoBehaviour
     {
         LocalizationManager.Instance.ChangeTableReference("LobbyStringData_Table");
         
-        settingPanel.Init(() => settingPanel.gameObject.SetActive(false));
+        settingPanel.Init(() =>
+        {
+            settingPanel.gameObject.SetActive(false);
+            lobbyPanel.SetActive(true);
+        });
         settingPanel.UpdateSettings();
     }
 
@@ -75,11 +80,13 @@ public class Lobby : MonoBehaviour
         lobbyCameraAnimator.SetBool("isOpenFridge", true);
         fridgeAnimator.SetBool("isOpen", true);
         
+        lobbyPanel.SetActive(false);
         saveSelectPanel.SetActive(true);
     }
 
     public void OnClickSetting()
     {
+        lobbyPanel.SetActive(false);
         settingPanel.gameObject.SetActive(true);
     }
 
@@ -89,6 +96,7 @@ public class Lobby : MonoBehaviour
         fridgeAnimator.SetBool("isOpen", false);
         
         saveSelectPanel.SetActive(false);
+        lobbyPanel.SetActive(true);
     }
 
     public void OnClickSaveSlot(int targetSlot = 1)

@@ -54,24 +54,27 @@ public class ButtonAnimation : MonoBehaviour
         }
     }
 
-    void OnPressed()
+    public void OnPressed()
     {
-        if(targetButton.interactable)
+        if(targetButton && targetButton.interactable)
         {
             animator.SetTrigger("Pressed");
         }
     }
 
-    void OnEnter()
+    public void OnEnter()
     {
-        if(targetButton.interactable)
+        if(targetButton && targetButton.interactable)
         {
             animator.SetTrigger("Hover");
         }
     }
 
-    void OnReset()
+    public void OnReset()
     {
-        animator.SetTrigger("Normal");
+        if (targetButton && targetButton.interactable)
+        {
+            animator.SetTrigger("Normal");
+        }
     }
 }

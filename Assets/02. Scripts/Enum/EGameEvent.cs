@@ -32,4 +32,7 @@ public enum EGameEvent
     OnGameSaved,
     
     OnKickedLeftDoor,
+    
+    OnChangeGamepadFoucs,
+    OnControlChange,
 }
