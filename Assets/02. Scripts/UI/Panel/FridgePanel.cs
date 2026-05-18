@@ -6,15 +6,16 @@ using UnityEngine;
 public class FridgePanel : MonoBehaviour
 {
     [SerializeField] GameObject blackground;
+    [SerializeField] GamepadGuideElement gamepadGuide;
 
     [Space(10)]
     [SerializeField] FridgeSlot[] fridgeSlots;
-    
-    void Update()
+
+    void OnDisable()
     {
-        if (Input.GetKeyUp(KeyCode.Escape))
+        foreach (FridgeSlot slot in fridgeSlots)
         {
-            OnClickCancel();
+            slot.ResetSlot();
         }
     }
 

@@ -4,7 +4,6 @@
 public class GamepadGuideData : ScriptableObject
 {
     [SerializeField] GameObject guidePrefab;
-    // [SerializeField] Sprite[] inputSprites;
 
     public GameObject GetPrefab()
     {

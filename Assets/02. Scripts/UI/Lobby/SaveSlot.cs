@@ -92,11 +92,14 @@ public class SaveSlot : MonoBehaviour
 
     public void ShowDeleteButton(bool isOn)
     {
-        if (isOn == false && EventSystem.current.gameObject == deleteBtn)
+        if (isOn == false)
         {
-            return;
+            if (EventSystem.current != null && EventSystem.current.gameObject == deleteBtn)
+            {
+                return;
+            }
         }
-        
+
         deleteBtn.SetActive(isOn && newGameText.activeSelf == false);
     }
 }

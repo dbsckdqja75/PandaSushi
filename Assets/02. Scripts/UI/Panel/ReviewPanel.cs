@@ -27,7 +27,6 @@ public class ReviewPanel : PanelUI
         
         for (int i = 0; i < displayStars.Length; i++)
         {
-            Debug.LogFormat("{0} < {1} = {2}", i, targetLevel, i < targetLevel);
             displayStars[i].SetActive(i < targetLevel);
         }
     }

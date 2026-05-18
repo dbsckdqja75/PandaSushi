@@ -31,11 +31,6 @@ public class MiniGame : MonoBehaviour
                 UpdateTimerDisplay(string.Format("{0}", Mathf.Clamp((int)timer, 0, gameTime)));
 
                 timer -= Time.deltaTime;
-
-                if (Input.GetKeyDown(KeyCode.Escape))
-                {
-                    ForceCancel();
-                }
             }
             else
             {

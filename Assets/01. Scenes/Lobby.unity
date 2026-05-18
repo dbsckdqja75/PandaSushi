@@ -3657,6 +3657,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SettingGamepad
   content: {fileID: 1080544445}
   closeBtn: {fileID: 1595470441}
+  closeInput: {fileID: 9104844963375473151, guid: ebc5c457b9b1a614ea115b9325ec7da3, type: 3}
 --- !u!222 &444868498
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -6474,6 +6475,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -430
       objectReference: {fileID: 0}
+    - target: {fileID: 1528925419724895004, guid: bc8ccee8129cc164b9c39954ba5e7cfd, type: 3}
+      propertyPath: globalState
+      value: 
+      objectReference: {fileID: 11400000, guid: 5a8022fb47199454d8bbf5294f376ce5, type: 2}
     - target: {fileID: 2021630963808527112, guid: bc8ccee8129cc164b9c39954ba5e7cfd, type: 3}
       propertyPath: m_AnchorMax.y
       value: 1
@@ -6514,6 +6519,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -350
       objectReference: {fileID: 0}
+    - target: {fileID: 4419934292551804920, guid: bc8ccee8129cc164b9c39954ba5e7cfd, type: 3}
+      propertyPath: globalState
+      value: 
+      objectReference: {fileID: 11400000, guid: 5a8022fb47199454d8bbf5294f376ce5, type: 2}
     - target: {fileID: 4853268056190606649, guid: bc8ccee8129cc164b9c39954ba5e7cfd, type: 3}
       propertyPath: m_AnchorMax.y
       value: 1
@@ -20859,6 +20868,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd69f55e036f410468e681e2ff170d81, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::InputDetector
+  playerInput: {fileID: 1648935163}
   gamepadNavigatorPrefab: {fileID: 176698287029254410, guid: 3ffaab5f78f36b1449bc86f2a4072a2e, type: 3}
 --- !u!114 &1648935163
 MonoBehaviour:
@@ -20883,20 +20893,7 @@ MonoBehaviour:
       m_Calls: []
   m_ControlsChangedEvent:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1648935162}
-        m_TargetAssemblyTypeName: InputDetector, Assembly-CSharp
-        m_MethodName: OnControlChanged
-        m_Mode: 2
-        m_Arguments:
-          m_ObjectArgument: {fileID: 1648935163}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.InputSystem.PlayerInput,
-            Unity.InputSystem
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
   m_ActionEvents:
   - m_PersistentCalls:
       m_Calls: []
@@ -20962,6 +20959,86 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 159571ee-c518-4feb-b309-4f29caa96445
     m_ActionName: Player/MenuDown
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: ae2a6295-4a26-4ea2-bcd3-0de2eebf25f2
+    m_ActionName: 'Player/Back[/DualSenseGamepadHID/buttonEast]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 34af6469-da7b-4732-8ff6-77e57719f3bc
+    m_ActionName: 'Player/PadSouth[/DualSenseGamepadHID/buttonSouth]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: f347be03-ea70-4504-9c18-e241d9a83e2b
+    m_ActionName: 'Player/PadNorth[/DualSenseGamepadHID/buttonNorth]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: bad725ae-3227-4cde-8e8d-903c12e5498b
+    m_ActionName: 'Player/PadWest[/DualSenseGamepadHID/buttonWest]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: a08b7e8d-f048-4b7e-9b8a-0f251d7a231e
+    m_ActionName: 'Player/PadEast[/DualSenseGamepadHID/buttonEast]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 7f427512-ccbd-4ad1-93ca-be0aec99a343
+    m_ActionName: 'Player/FuncLeft[/DualSenseGamepadHID/start,/DualSenseGamepadHID/select]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 8157d070-3c84-40ba-b2ee-87afc9f32d4a
+    m_ActionName: 'Player/FuncRight[/DualSenseGamepadHID/select,/DualSenseGamepadHID/start]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 55b0354a-33b5-4c6d-af57-55f789f4aefd
+    m_ActionName: 'Player/LeftBumper[/DualSenseGamepadHID/leftShoulder]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: d1c0e648-30da-450d-b9c6-a2284055acb5
+    m_ActionName: 'Player/RightBumper[/DualSenseGamepadHID/rightShoulder]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 98f33eed-453d-4cb0-a606-71521b3c91a7
+    m_ActionName: 'Player/LeftTrigger[/DualSenseGamepadHID/leftTrigger]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 01fa94ee-3789-45e8-9227-d96aaaa9e6bf
+    m_ActionName: 'Player/RightTrigger[/DualSenseGamepadHID/rightTrigger]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: ebd6087d-1851-4a39-a6bd-31131e2e8dba
+    m_ActionName: 'Player/PointerSelect[/DualSenseGamepadHID/buttonSouth,/Mouse/leftButton]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: efcc2b33-1030-4611-8feb-942dfce12707
+    m_ActionName: 'Player/MousePointer[/Mouse/position]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: fc9796c2-1963-43e1-ba81-83c4a929cdd2
+    m_ActionName: 'Player/PadPointer[/DualSenseGamepadHID/leftStick]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: a6cbf9b5-9828-46cf-8c89-b9db68eaacc1
+    m_ActionName: 'Player/AimPointer[/DualSenseGamepadHID/rightStick]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: a470f0db-8dbf-4b2a-948d-6104ce982ec9
+    m_ActionName: 'Player/Interaction[/DualSenseGamepadHID/buttonNorth,/Keyboard/f]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: ad980fff-96b7-4851-ad9e-1c3c7d8399e4
+    m_ActionName: 'Player/Eat[/DualSenseGamepadHID/buttonNorth,/Keyboard/e]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 819eba4a-2569-41fd-8c51-36f85ce8d4e7
+    m_ActionName: 'Player/Aim[/DualSenseGamepadHID/leftTrigger,/Mouse/rightButton]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 0dec00fb-761a-4dd6-b72c-bff145c27d03
+    m_ActionName: 'Player/Shoot[/DualSenseGamepadHID/rightTrigger,/Mouse/leftButton]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: cf21d9b9-7ca2-4b9c-9f51-cffc96949c67
+    m_ActionName: 'Player/Escape[/DualSenseGamepadHID/start,/Keyboard/escape]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: UI

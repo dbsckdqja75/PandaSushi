@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Events;
@@ -19,19 +18,13 @@ public class GamepadGuideElement : MonoBehaviour
     [SerializeField] UnityEvent onNorthEvent; // D-Pad Up
     [SerializeField] UnityEvent onSouthEvent; // D-Pad Down
 
-    RectTransform rectTrf;
-
-    void Awake()
-    {
-        rectTrf = this.GetComponent<RectTransform>();
-    }
-
     void OnEnable()
     {
         if (onStartFoucs)
         {
-            EventManager.GetEvent(EGameEvent.OnControlChange).Subscribe(OnEnable);
-            EventManager.GetEvent<GamepadGuideElement>(EGameEvent.OnChangeGamepadFoucs).Invoke(this);
+            StartFocus();
+            
+            EventManager.GetEvent(EGameEvent.OnControlChange).Subscribe(StartFocus);
         }
     }
 
@@ -39,8 +32,13 @@ public class GamepadGuideElement : MonoBehaviour
     {
         if (onStartFoucs)
         {
-            EventManager.GetEvent(EGameEvent.OnControlChange).Unsubscribe(OnDisable);
+            EventManager.GetEvent(EGameEvent.OnControlChange).Unsubscribe(StartFocus);
         }
+    }
+
+    void StartFocus()
+    {
+        EventManager.GetEvent<GamepadGuideElement>(EGameEvent.OnChangeGamepadFoucs).Invoke(this);
     }
 
     public void OnDeselect()
@@ -60,11 +58,26 @@ public class GamepadGuideElement : MonoBehaviour
 
     public void ForceClick(Button targetButton)
     {
-        targetButton.onClick.Invoke();
+        if (targetButton.gameObject.activeSelf && targetButton.interactable)
+        {
+            targetButton.onClick.Invoke();
+        }
+    }
+    
+    public void ForceClickWithHide(Button targetButton)
+    {
+        EventManager.GetEvent<GamepadGuideElement>(EGameEvent.OnChangeGamepadFoucs).Invoke(null);
+        
+        ForceClick(targetButton);
     }
 
     public void Switch(GamepadGuideElement element)
     {
+        if (element != null && element.gameObject.activeSelf == false)
+        {
+            return;
+        }
+        
         EventManager.GetEvent<GamepadGuideElement>(EGameEvent.OnChangeGamepadFoucs).Invoke(element);
     }
 
@@ -92,10 +105,5 @@ public class GamepadGuideElement : MonoBehaviour
     public GamepadGuideData GetGuidePreset()
     {
         return targetPreset;
-    }
-
-    public RectTransform GetRectTrf()
-    {
-        return rectTrf;
     }
 }

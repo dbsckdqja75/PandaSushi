@@ -8,15 +8,7 @@ public class PanelUI : MonoBehaviour
     {
         canvasManager = FindAnyObjectByType<CanvasManager>();
     }
-    
-    protected virtual void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            Close();
-        }
-    }
-    
+
     public virtual void Close()
     {
         canvasManager.ShowPanel(EScreenState.Prepare);

@@ -99,12 +99,14 @@ public class Lobby : MonoBehaviour
         lobbyPanel.SetActive(true);
     }
 
-    public void OnClickSaveSlot(int targetSlot = 1)
+    public void OnClickSaveSlot(int targetSlot = 1) // NOTE: 게임 불러오기
     {
         PlayerPrefsManager.ChangeTargetSlot(targetSlot);
 
         CancelInvoke();
-        SoundManager.Instance.StopMusic();
+        SoundManager.Instance.StopMusic(false);
+        
+        EventManager.GetEvent<GamepadGuideElement>(EGameEvent.OnChangeGamepadFoucs).Invoke(null);
         
         loadingScreen.SetActive(true);
         LoadScene().Start(this);

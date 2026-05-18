@@ -1,26 +1,25 @@
+using System;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
     bool isAiming = false;
-    
+
     [SerializeField] float h, v;
     float lerpX, lerpZ;
     float latestH, latestV;
 
-    Vector3 lookAtPoint;
+    Vector3 inputPos, lookAtPoint;
 
-    [Space(10)]
-    [SerializeField] float lerpMove = 5;
+    [Space(10)] [SerializeField] float lerpMove = 5;
 
-    [Space(10)]
-    [SerializeField] float lerpSpeed = 8;
+    [Space(10)] [SerializeField] float lerpSpeed = 8;
     [SerializeField] float minMoveSpeed = 4, maxMoveSpeed = 6;
     [SerializeField] GlobalState globalState;
 
-    [Space(10)]
-    [SerializeField] LayerMask rayTargetLayer;
+    [Space(10)] [SerializeField] LayerMask rayTargetLayer;
     [SerializeField] LayerMask forwardRayTargetLayer;
     [SerializeField] LayerMask floorRayTargetLayer;
 
@@ -32,8 +31,8 @@ public class PlayerController : MonoBehaviour
     Player player;
     PlayerMotion playerMotion;
 
+    CustomPlayerActions playerActions;
     CapsuleCollider col;
-
     Rigidbody rb;
 
     void Awake()
@@ -46,36 +45,55 @@ public class PlayerController : MonoBehaviour
         rayHitObj = null;
     }
 
+    void OnEnable()
+    {
+        playerActions = new CustomPlayerActions();
+        playerActions.Player.MousePointer.performed += OnInputPosition;
+        playerActions.Player.PadPointer.performed += OnInputPosition;
+        playerActions.Player.AimPointer.performed += OnAimPosition;
+        
+        playerActions.Player.PointerSelect.started += (i) => OnInputSelect();
+        playerActions.Player.Interaction.performed += (i) => OnInputKeyInteraction();
+        playerActions.Player.Eat.started += (i) => OnInputEat();
+
+        playerActions.Player.Aim.started += (i) => OnInputAim(true);
+        playerActions.Player.Aim.canceled += (i) => OnInputAim(false);
+
+        playerActions.Player.Shoot.started += (i) => OnInputThrow();
+
+        playerActions.Player.Enable();
+    }
+
+    void OnDisable()
+    {
+        playerActions.Player.Disable();
+    }
+
     void Update()
     {
-        if (player.CanMove())
-        {
-            UpdateInputKey();
-            UpdateMouseObject();
-            UpdateHoverObject();
-        }
+        UpdateHover();
     }
 
     void FixedUpdate()
     {
-        if(player.CanMove() == false)
+        if (player.CanMove() == false)
         {
             return;
         }
 
-        h = -Input.GetAxisRaw("Horizontal");
-        v = -Input.GetAxisRaw("Vertical");
+        h = -Mathf.RoundToInt(Input.GetAxisRaw("Horizontal"));
+        v = -Mathf.RoundToInt(Input.GetAxisRaw("Vertical"));
 
         if (player.IsAiming())
         {
             h = v = 0;
         }
 
-        if(h != 0 || v != 0)
+        if (h != 0 || v != 0)
         {
             latestH = h;
             latestV = v;
-
+            
             UpdateMovePosition();
 
             playerMotion.OnWalk();
@@ -90,70 +108,83 @@ public class PlayerController : MonoBehaviour
         rb.linearVelocity = Vector3.zero;
 
         UpdateLookAtPosition();
-        // UpdateInputKey();
-        // UpdateMouseObject();
-        // UpdateHoverObject();
     }
 
-    void UpdateInputKey()
+    void OnInputPosition(InputAction.CallbackContext inputContext)
     {
-        if (Input.GetKeyUp(KeyCode.E))
-        {
-            if (player.IsHolding() && player.CanEat())
-            {
-                player.ManuallyEat();
-            }
-        }
-
-        if (Input.GetMouseButtonDown(1))
-        {
-            if (player.IsHolding() == false && player.IsAiming() == false)
-            {
-                player.StartAim();
-            }
-        }
-
         if (player.IsAiming())
         {
-            if (Input.GetMouseButtonUp(1))
+            return;
+        }
+        
+        Vector2 inputValue = inputContext.ReadValue<Vector2>();
+        if (InputDetector.Instance.IsInputGamepad() == false)
+        {
+            inputPos = inputValue;
+        }
+        else
+        {
+            inputPos = Camera.main.WorldToScreenPoint(transform.position + transform.forward);
+        }
+    }
+
+    void OnAimPosition(InputAction.CallbackContext inputContext)
+    {
+        Vector2 inputValue = inputContext.ReadValue<Vector2>().normalized;
+        if (player.IsAiming() && inputValue.magnitude != 0)
+        {
+            latestH = inputValue.x;
+            latestV = inputValue.y;
+
+            Vector3 stickValue = new Vector3(inputValue.x, 0, inputValue.y) * 10f;
+            inputPos = Camera.main.WorldToScreenPoint(transform.position + stickValue);
+        }
+    }
+
+    void OnInputSelect()
+    {
+        if(player.CanMove() == false)
+        {
+            return;
+        }
+
+        if (InputDetector.Instance.IsInputGamepad() == false)
+        {
+            if (EventSystem.current != null && EventSystem.current.IsPointerOverGameObject())
             {
-                player.FinishAim(Vector3.zero);
                 return;
             }
-            
-            if (Input.GetMouseButtonDown(0))
-            {
-                player.FinishAim(lookAtPoint);
-            }
         }
-    }
 
-    void UpdateMouseObject()
-    {
-        if (Input.GetMouseButtonUp(0) && EventSystem.current.IsPointerOverGameObject() == false)
+        RaycastHit hit;
+        Ray ray = Camera.main.ScreenPointToRay(inputPos);
+        InteractionObject iObject = null;
+            
+        rayHitObj = Physics.Raycast(ray, out hit, Mathf.Infinity, rayTargetLayer) ? hit.collider.gameObject : null;
+        if (rayHitObj != null && rayHitObj.TryGetComponent(out iObject))
         {
-            RaycastHit hit;
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            InteractionObject iObject = null;
-            
-            rayHitObj = Physics.Raycast(ray, out hit, Mathf.Infinity, rayTargetLayer) ? hit.collider.gameObject : null;
-            if (rayHitObj != null && rayHitObj.TryGetComponent(out iObject))
-            {
-                iObject.OnSelect(player);
-            }
+            iObject.OnSelect(player);
+
+            prevHitObj = null;
+            ForceClearHoverObject();
         }
     }
 
-    void UpdateHoverObject()
+    public void UpdateHover()
     {
-        if (EventSystem.current.IsPointerOverGameObject())
+        if (InputDetector.Instance.IsInputGamepad() == false && EventSystem.current.IsPointerOverGameObject())
         {
             ForceClearHoverObject();
             return;
         }
-        
+
+        if (player.CanMove() == false)
+        {
+            return;
+        }
+
         RaycastHit hit;
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        Ray ray = Camera.main.ScreenPointToRay(inputPos);
 
         rayHitObj = Physics.Raycast(ray, out hit, Mathf.Infinity, rayTargetLayer) ? hit.collider.gameObject : null;
         if(rayHitObj != prevHitObj)
@@ -183,20 +214,74 @@ public class PlayerController : MonoBehaviour
                 EventManager.GetEvent<HoverPlateInfo>(EGameEvent.OnHoverPlate).Invoke(null);
             }
         }
-        
+
+        if (hitInteractionObj != null)
+        {
+            EventManager.GetEvent<bool>(EGameEvent.OnCloserHoverObject).Invoke(hitInteractionObj.CanSelect(this.transform));
+        }
+    }
+
+    public void OnInputAim(bool onStart)
+    {
+        if(player.CanMove() == false)
+        {
+            return;
+        }
+
+        if (onStart)
+        {
+            if (player.IsHolding() == false && player.IsAiming() == false)
+            {
+                player.StartAim();
+            }
+
+            return;
+        }
+
+        player.FinishAim(Vector3.zero);
+    }
+
+    public void OnInputThrow()
+    {
+        if(player.CanMove() == false)
+        {
+            return;
+        }
+
+        if (player.IsAiming())
+        {
+            player.FinishAim(lookAtPoint);
+        }
+    }
+
+    public void OnInputEat()
+    {
+        if(player.CanMove() == false)
+        {
+            return;
+        }
+
+        if (player.IsHolding() && player.CanEat())
+        {
+            player.ManuallyEat();
+        }
+    }
+
+    public void OnInputKeyInteraction()
+    {
+        if(player.CanMove() == false)
+        {
+            return;
+        }
+
         if(hitInteractionObj != null)
         {
-            if(Input.GetKeyDown(KeyCode.F))
+            if(hitInteractionObj.TryGetComponent(out PrepTable table) && player.IsIdle())
             {
-                if(hitInteractionObj.TryGetComponent<PrepTable>(out PrepTable table) && player.IsIdle())
-                {
-                    table.TryPrep();
+                table.TryPrep();
 
-                    prevHitObj = null;
-                }
+                prevHitObj = null;
             }
-            
-            EventManager.GetEvent<bool>(EGameEvent.OnCloserHoverObject).Invoke(hitInteractionObj.CanSelect(this.transform));
         }
     }
 
@@ -205,7 +290,6 @@ public class PlayerController : MonoBehaviour
         lerpMove = Mathf.Lerp(lerpMove, maxMoveSpeed, minMoveSpeed * Time.fixedDeltaTime);
 
         Vector3 moveToPoint = Vector3.zero;
-
         if(IsMoveable())
         {
             moveToPoint = new Vector3(h, 0, v);
@@ -227,7 +311,7 @@ public class PlayerController : MonoBehaviour
         if (player.IsAiming())
         {
             RaycastHit hit;
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            Ray ray = Camera.main.ScreenPointToRay(inputPos);
             Vector3 hitPos = Physics.Raycast(ray, out hit, Mathf.Infinity, floorRayTargetLayer) ? hit.point : Vector3.zero;
 
             if (hitPos != Vector3.zero)
@@ -242,7 +326,6 @@ public class PlayerController : MonoBehaviour
         Quaternion targetRotation = Quaternion.LookRotation(directionToTarget);
         
         transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, lerpSpeed * 2 * Time.fixedDeltaTime);
-        // transform.LookAt(lookAtPoint);
     }
 
     public void ForceClearHoverObject()
@@ -284,7 +367,8 @@ public class PlayerController : MonoBehaviour
         return true;
     }
 
-
+    
+    
     #if UNITY_EDITOR
     void OnDrawGizmos()
     {
@@ -324,8 +408,8 @@ public class PlayerController : MonoBehaviour
         labelStyle.normal.textColor = Color.red;
         UnityEditor.Handles.Label(transform.position  + new Vector3(latestH, 0.5f, latestV), "CUR", labelStyle);
 
-        Vector3 mousePoint = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        
+        Vector3 mousePoint = Camera.main.ScreenToWorldPoint(inputPos);;
+
         Gizmos.color = Color.gray; // NOTE: MOUSE POINT
         Gizmos.DrawLine(transform.position, mousePoint);
         labelStyle.normal.textColor = Color.red;

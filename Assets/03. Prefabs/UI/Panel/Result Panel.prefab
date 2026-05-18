@@ -2573,6 +2573,98 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SoundTrigger
   clipName: SFX_Stab2
+--- !u!1 &5180461018085000744
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 223328400076240486}
+  - component: {fileID: 4631074390853368313}
+  - component: {fileID: 3262260905714844674}
+  m_Layer: 5
+  m_Name: GamepadGuide
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!224 &223328400076240486
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5180461018085000744}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4126711846845798569}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 520, y: 140}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!222 &4631074390853368313
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5180461018085000744}
+  m_CullTransparentMesh: 1
+--- !u!114 &3262260905714844674
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5180461018085000744}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aae4d7c5b08edb84e9faf59c2f76c95b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GamepadGuideElement
+  onStartFoucs: 1
+  targetPreset: {fileID: 11400000, guid: aa5013e8f16e52e409266eccf30efbf1, type: 2}
+  onDeselectEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  onSelectEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  onPressEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 3262260905714844674}
+        m_TargetAssemblyTypeName: GamepadGuideElement, Assembly-CSharp
+        m_MethodName: ForceClick
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 3649220628783121086}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.UI.Button, UnityEngine.UI
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  onWestEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  onEastEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  onNorthEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  onSouthEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &5269756962537583862
 GameObject:
   m_ObjectHideFlags: 0
@@ -3660,6 +3752,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 977256062077954696}
+  - {fileID: 223328400076240486}
   m_Father: {fileID: 7719257152861174428}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}

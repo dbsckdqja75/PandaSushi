@@ -1,5 +1,6 @@
 public enum EScreenState
 {
+    None,
     Ready,
     Playing,
     Result,

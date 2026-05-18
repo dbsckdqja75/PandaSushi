@@ -40,6 +40,8 @@ public partial class StageManager : MonoSingleton<StageManager>
     NotificationUI notificationUI;
     RoundAnalytics roundAnalytics;
     
+    CustomPlayerActions playerActions;
+    
     void Awake()
     {
         player = FindAnyObjectByType<Player>();
@@ -63,8 +65,17 @@ public partial class StageManager : MonoSingleton<StageManager>
         EventManager.OnGameStateChanged += HandleGameStateChange;
     }
 
+    void OnEnable()
+    {
+        playerActions = new CustomPlayerActions();
+        playerActions.Player.Escape.started += (i) => OnClickPause();
+        playerActions.Player.Enable();
+    }
+
     void OnDisable()
     {
+        playerActions.Player.Disable();
+        
         EventManager.GetEvent(EGameEvent.OnGameSaved).Clear();
         EventManager.GetEvent(EGameEvent.OnSoldOutOrder).Clear();
         EventManager.OnGameStateChanged -= HandleGameStateChange;
@@ -75,49 +86,20 @@ public partial class StageManager : MonoSingleton<StageManager>
         EventManager.GameStatus = EGameState.RoundPrepare;
     }
 
+    #if UNITY_EDITOR
+    // NOTE: DEBUG
     void Update()
     {
-        // NOTE: DEBUG
-        // if(Input.GetKey(KeyCode.Alpha4) && Time.timeScale != 0)
-        // {
-        //     Time.timeScale = 3;
-        // }
-        // else if(Time.timeScale != 0)
-        // {
-        //     Time.timeScale = 1;
-        // }
-        //
-        // if (Input.GetKeyDown(KeyCode.Alpha0))
-        // {
-        //     CurrencyManager.Instance.RewardCurrency(ECurrencyType.Money, 900000);
-        //     CurrencyManager.Instance.RewardCurrency(ECurrencyType.Star, 500);
-        //     
-        //     RefreshBonusState();
-        //     RefreshUnlockLevelState();
-        //     
-        //     EventManager.GetEvent(EGameEvent.OnUpdateCurrency).Invoke();
-        // }
-        //
-
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if(Input.GetKey(KeyCode.Alpha4) && Time.timeScale != 0)
         {
-            if (!canvasManager.IsShowingPanel() && !miniGameLoader.IsPlaying() && !fridgePanel.activeSelf)
-            {
-                if (Time.timeScale != 0)
-                {
-                    EventManager.GameStatus = EGameState.Pause;
-                }
-                else
-                {
-                    EventManager.GameStatus = EGameState.Resume;
-                }
-            }
-            else if(EventManager.GameStatus == EGameState.Pause)
-            {
-                EventManager.GameStatus = EGameState.Resume;
-            }
+            Time.timeScale = 3;
+        }
+        else if(Time.timeScale != 0)
+        {
+            Time.timeScale = 1;
         }
     }
+    #endif
 
     public void ChangeGameState(EGameState newState)
     {
@@ -136,9 +118,31 @@ public partial class StageManager : MonoSingleton<StageManager>
 
     public void OnClickRecipeBook()
     {
-        Time.timeScale = 0;
-        
-        canvasManager.ShowPanel(EScreenState.RecipeBook, false);
+        if (canvasManager.IsShowingPanel() == false)
+        {
+            Time.timeScale = 0;
+            
+            canvasManager.ShowPanel(EScreenState.RecipeBook, false);
+        }
+    }
+
+    void OnClickPause()
+    {
+        if (!canvasManager.IsShowingPanel() && !miniGameLoader.IsPlaying() && !fridgePanel.activeSelf)
+        {
+            if (Time.timeScale != 0)
+            {
+                EventManager.GameStatus = EGameState.Pause;
+            }
+            else
+            {
+                EventManager.GameStatus = EGameState.Resume;
+            }
+        }
+        else if(EventManager.GameStatus == EGameState.Pause)
+        {
+            EventManager.GameStatus = EGameState.Resume;
+        }
     }
 
     public void CallDeliveryRider()

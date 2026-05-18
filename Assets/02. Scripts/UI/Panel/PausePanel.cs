@@ -4,7 +4,7 @@ public class PausePanel : PanelUI
 {
     [SerializeField] GameObject restartBtn;
     
-    void OnEnable()
+    void Start()
     {
         restartBtn.SetActive(canvasManager.IsShowingPanel() == false);
     }

@@ -125,6 +125,7 @@ MonoBehaviour:
   sprites:
   - {fileID: -1660393603, guid: 1b3a13715de0de449ab8a5bec4867b59, type: 3}
   - {fileID: -667569924, guid: e370cc4c039c14e429654ca2548215bd, type: 3}
+  globalState: {fileID: 11400000, guid: 5a8022fb47199454d8bbf5294f376ce5, type: 2}
 --- !u!1 &4634231822014033913
 GameObject:
   m_ObjectHideFlags: 0

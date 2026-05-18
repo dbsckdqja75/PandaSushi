@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: 2848583818827574745}
   - component: {fileID: 7704376362662561309}
   - component: {fileID: 3980484000781658971}
+  - component: {fileID: 7646841661461741328}
   m_Layer: 5
   m_Name: StockOrder Button
   m_TagString: Untagged
@@ -230,6 +231,113 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.EventSystems.EventTrigger
   m_Delegates: []
+--- !u!114 &7646841661461741328
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 23365084922877432}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aae4d7c5b08edb84e9faf59c2f76c95b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GamepadGuideElement
+  onStartFoucs: 1
+  targetPreset: {fileID: 11400000, guid: 776fb1180036a794190f431eba18badb, type: 2}
+  onDeselectEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2848583818827574745}
+        m_TargetAssemblyTypeName: ButtonAnimation, Assembly-CSharp
+        m_MethodName: OnReset
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  onSelectEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2848583818827574745}
+        m_TargetAssemblyTypeName: ButtonAnimation, Assembly-CSharp
+        m_MethodName: OnEnter
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  onPressEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2848583818827574745}
+        m_TargetAssemblyTypeName: ButtonAnimation, Assembly-CSharp
+        m_MethodName: OnPressed
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 7646841661461741328}
+        m_TargetAssemblyTypeName: GamepadGuideElement, Assembly-CSharp
+        m_MethodName: ForceClick
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 5430228496086155982}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.UI.Button, UnityEngine.UI
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  onWestEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 7646841661461741328}
+        m_TargetAssemblyTypeName: GamepadGuideElement, Assembly-CSharp
+        m_MethodName: Switch
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 3993975343692852514}
+          m_ObjectArgumentAssemblyTypeName: GamepadGuideElement, Assembly-CSharp
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  onEastEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 7646841661461741328}
+        m_TargetAssemblyTypeName: GamepadGuideElement, Assembly-CSharp
+        m_MethodName: Switch
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 8715930936004282649}
+          m_ObjectArgumentAssemblyTypeName: GamepadGuideElement, Assembly-CSharp
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  onNorthEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  onSouthEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &655962201379181535
 GameObject:
   m_ObjectHideFlags: 0
@@ -245,6 +353,7 @@ GameObject:
   - component: {fileID: 1557447192441730766}
   - component: {fileID: 8949897620676398567}
   - component: {fileID: 7461843089484654774}
+  - component: {fileID: 7889849233662049304}
   m_Layer: 5
   m_Name: NextRound Button
   m_TagString: Untagged
@@ -396,6 +505,113 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.EventSystems.EventTrigger
   m_Delegates: []
+--- !u!114 &7889849233662049304
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 655962201379181535}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aae4d7c5b08edb84e9faf59c2f76c95b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GamepadGuideElement
+  onStartFoucs: 0
+  targetPreset: {fileID: 11400000, guid: f880ed306d4db9f488f1c77cc3670d24, type: 2}
+  onDeselectEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1557447192441730766}
+        m_TargetAssemblyTypeName: ButtonAnimation, Assembly-CSharp
+        m_MethodName: OnReset
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  onSelectEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1557447192441730766}
+        m_TargetAssemblyTypeName: ButtonAnimation, Assembly-CSharp
+        m_MethodName: OnEnter
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  onPressEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1557447192441730766}
+        m_TargetAssemblyTypeName: ButtonAnimation, Assembly-CSharp
+        m_MethodName: OnPressed
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 7889849233662049304}
+        m_TargetAssemblyTypeName: GamepadGuideElement, Assembly-CSharp
+        m_MethodName: ForceClickWithHide
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 8623640595786353598}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.UI.Button, UnityEngine.UI
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  onWestEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 7889849233662049304}
+        m_TargetAssemblyTypeName: GamepadGuideElement, Assembly-CSharp
+        m_MethodName: Switch
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 2662325385067659342}
+          m_ObjectArgumentAssemblyTypeName: GamepadGuideElement, Assembly-CSharp
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  onEastEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 7889849233662049304}
+        m_TargetAssemblyTypeName: GamepadGuideElement, Assembly-CSharp
+        m_MethodName: Switch
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 3993975343692852514}
+          m_ObjectArgumentAssemblyTypeName: GamepadGuideElement, Assembly-CSharp
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  onNorthEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  onSouthEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &1316864436000218318
 GameObject:
   m_ObjectHideFlags: 0
@@ -814,6 +1030,7 @@ GameObject:
   - component: {fileID: 6186919712707312082}
   - component: {fileID: 5302290579280771569}
   - component: {fileID: 7145632777284832634}
+  - component: {fileID: 2662325385067659342}
   m_Layer: 5
   m_Name: Interior Button
   m_TagString: Untagged
@@ -1027,6 +1244,113 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.EventSystems.EventTrigger
   m_Delegates: []
+--- !u!114 &2662325385067659342
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3565166720325855607}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aae4d7c5b08edb84e9faf59c2f76c95b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GamepadGuideElement
+  onStartFoucs: 0
+  targetPreset: {fileID: 11400000, guid: 776fb1180036a794190f431eba18badb, type: 2}
+  onDeselectEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 6186919712707312082}
+        m_TargetAssemblyTypeName: ButtonAnimation, Assembly-CSharp
+        m_MethodName: OnReset
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  onSelectEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 6186919712707312082}
+        m_TargetAssemblyTypeName: ButtonAnimation, Assembly-CSharp
+        m_MethodName: OnEnter
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  onPressEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 6186919712707312082}
+        m_TargetAssemblyTypeName: ButtonAnimation, Assembly-CSharp
+        m_MethodName: OnPressed
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 2662325385067659342}
+        m_TargetAssemblyTypeName: GamepadGuideElement, Assembly-CSharp
+        m_MethodName: ForceClickWithHide
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 8729761974134738661}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.UI.Button, UnityEngine.UI
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  onWestEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2662325385067659342}
+        m_TargetAssemblyTypeName: GamepadGuideElement, Assembly-CSharp
+        m_MethodName: Switch
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 8715930936004282649}
+          m_ObjectArgumentAssemblyTypeName: GamepadGuideElement, Assembly-CSharp
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  onEastEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2662325385067659342}
+        m_TargetAssemblyTypeName: GamepadGuideElement, Assembly-CSharp
+        m_MethodName: Switch
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 7889849233662049304}
+          m_ObjectArgumentAssemblyTypeName: GamepadGuideElement, Assembly-CSharp
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  onNorthEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  onSouthEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &5073175890266738159
 GameObject:
   m_ObjectHideFlags: 0
@@ -1157,6 +1481,7 @@ GameObject:
   - component: {fileID: 7361537258807527436}
   - component: {fileID: 3193045414533902615}
   - component: {fileID: 4109144152106870033}
+  - component: {fileID: 1130233541521405673}
   m_Layer: 5
   m_Name: Prepare Panel
   m_TagString: Untagged
@@ -1206,6 +1531,34 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 73ff210e4398d4b1e92af359cc77a458, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PreparePanel
+--- !u!114 &1130233541521405673
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7638321241929097660}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da1f37664e164094db98fc40fcc07c5c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::InputTrigger
+  targetInput: {fileID: -5136522655326225439, guid: ebc5c457b9b1a614ea115b9325ec7da3, type: 3}
+  targetEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 4109144152106870033}
+        m_TargetAssemblyTypeName: PreparePanel, Assembly-CSharp
+        m_MethodName: OnClickPause
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &7948172934135867486
 GameObject:
   m_ObjectHideFlags: 0
@@ -1578,6 +1931,7 @@ GameObject:
   - component: {fileID: 8517931288506861843}
   - component: {fileID: 2576612009171233654}
   - component: {fileID: 7902962005744183858}
+  - component: {fileID: 3993975343692852514}
   m_Layer: 5
   m_Name: Recipe Button
   m_TagString: Untagged
@@ -1758,6 +2112,113 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.EventSystems.EventTrigger
   m_Delegates: []
+--- !u!114 &3993975343692852514
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8183231027370561422}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aae4d7c5b08edb84e9faf59c2f76c95b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GamepadGuideElement
+  onStartFoucs: 0
+  targetPreset: {fileID: 11400000, guid: c98c54a9736af7047a45162237363307, type: 2}
+  onDeselectEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 8517931288506861843}
+        m_TargetAssemblyTypeName: ButtonAnimation, Assembly-CSharp
+        m_MethodName: OnReset
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  onSelectEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 8517931288506861843}
+        m_TargetAssemblyTypeName: ButtonAnimation, Assembly-CSharp
+        m_MethodName: OnEnter
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  onPressEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 8517931288506861843}
+        m_TargetAssemblyTypeName: ButtonAnimation, Assembly-CSharp
+        m_MethodName: OnPressed
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 3993975343692852514}
+        m_TargetAssemblyTypeName: GamepadGuideElement, Assembly-CSharp
+        m_MethodName: ForceClickWithHide
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 7408278297885284887}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.UI.Button, UnityEngine.UI
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  onWestEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 3993975343692852514}
+        m_TargetAssemblyTypeName: GamepadGuideElement, Assembly-CSharp
+        m_MethodName: Switch
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 7889849233662049304}
+          m_ObjectArgumentAssemblyTypeName: GamepadGuideElement, Assembly-CSharp
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  onEastEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 3993975343692852514}
+        m_TargetAssemblyTypeName: GamepadGuideElement, Assembly-CSharp
+        m_MethodName: Switch
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 7646841661461741328}
+          m_ObjectArgumentAssemblyTypeName: GamepadGuideElement, Assembly-CSharp
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  onNorthEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  onSouthEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &8347565126126729181
 GameObject:
   m_ObjectHideFlags: 0
@@ -1775,6 +2236,7 @@ GameObject:
   - component: {fileID: 4140129899561640265}
   - component: {fileID: 7646049171329537002}
   - component: {fileID: 2692629059098323235}
+  - component: {fileID: 8715930936004282649}
   m_Layer: 5
   m_Name: Review Button
   m_TagString: Untagged
@@ -1988,3 +2450,110 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.EventSystems.EventTrigger
   m_Delegates: []
+--- !u!114 &8715930936004282649
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8347565126126729181}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aae4d7c5b08edb84e9faf59c2f76c95b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GamepadGuideElement
+  onStartFoucs: 0
+  targetPreset: {fileID: 11400000, guid: 776fb1180036a794190f431eba18badb, type: 2}
+  onDeselectEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 4140129899561640265}
+        m_TargetAssemblyTypeName: ButtonAnimation, Assembly-CSharp
+        m_MethodName: OnReset
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  onSelectEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 4140129899561640265}
+        m_TargetAssemblyTypeName: ButtonAnimation, Assembly-CSharp
+        m_MethodName: OnEnter
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  onPressEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 4140129899561640265}
+        m_TargetAssemblyTypeName: ButtonAnimation, Assembly-CSharp
+        m_MethodName: OnPressed
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 8715930936004282649}
+        m_TargetAssemblyTypeName: GamepadGuideElement, Assembly-CSharp
+        m_MethodName: ForceClickWithHide
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 2253595888118215243}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.UI.Button, UnityEngine.UI
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  onWestEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 8715930936004282649}
+        m_TargetAssemblyTypeName: GamepadGuideElement, Assembly-CSharp
+        m_MethodName: Switch
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 7646841661461741328}
+          m_ObjectArgumentAssemblyTypeName: GamepadGuideElement, Assembly-CSharp
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  onEastEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 8715930936004282649}
+        m_TargetAssemblyTypeName: GamepadGuideElement, Assembly-CSharp
+        m_MethodName: Switch
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 2662325385067659342}
+          m_ObjectArgumentAssemblyTypeName: GamepadGuideElement, Assembly-CSharp
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  onNorthEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  onSouthEvent:
+    m_PersistentCalls:
+      m_Calls: []

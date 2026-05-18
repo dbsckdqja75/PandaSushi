@@ -21,15 +21,12 @@ public class PreparePanel : PanelUI
     {
         canvasManager.ShowPanel(EScreenState.RecipeBook);
     }
-    
-    protected override void Update()
+
+    public void OnClickPause()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            StageManager.Instance.ChangeGameState(EGameState.Pause);
-        }
+        StageManager.Instance.ChangeGameState(EGameState.Pause);
     }
-    
+
     public override void Close()
     {
         StageManager.Instance.ChangeGameState(EGameState.RoundReady);

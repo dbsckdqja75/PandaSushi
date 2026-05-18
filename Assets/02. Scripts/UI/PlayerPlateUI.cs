@@ -6,7 +6,7 @@ public class PlayerPlateUI : MonoBehaviour
 {
     [SerializeField] GameObject mainLayout;
     [SerializeField] GameObject iconPrefab;
-    
+
     [Space(10)]
     [SerializeField] RectTransform listPivot;
     [SerializeField] GridLayoutGroup listGroup;

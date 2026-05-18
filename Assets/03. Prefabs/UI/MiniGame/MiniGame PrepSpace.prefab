@@ -382,6 +382,7 @@ GameObject:
   - component: {fileID: 5183661797970374083}
   - component: {fileID: 6669707589287641376}
   - component: {fileID: 4037329345168849936}
+  - component: {fileID: 2925022790599526799}
   m_Layer: 5
   m_Name: MiniGame PrepSpace
   m_TagString: Untagged
@@ -452,6 +453,34 @@ MonoBehaviour:
   hitPivot: 0.732
   hitPivotScale: 1
   offsetX: 0
+--- !u!114 &2925022790599526799
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3468189046418429465}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da1f37664e164094db98fc40fcc07c5c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::InputTrigger
+  targetInput: {fileID: -5136522655326225439, guid: ebc5c457b9b1a614ea115b9325ec7da3, type: 3}
+  targetEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 4037329345168849936}
+        m_TargetAssemblyTypeName: MiniGamePrepSpace, Assembly-CSharp
+        m_MethodName: ForceCancel
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &3757582987145027440
 GameObject:
   m_ObjectHideFlags: 0

@@ -20,9 +20,10 @@ public class InputIcon : MonoBehaviour
 
     void UpdateIcon()
     {
-        if (InputDetector.currentInputType > 0)
+        if (InputDetector.Instance.currentInputType > 0)
         {
-            targetImage.sprite = sprites[InputDetector.currentInputType - 1];
+            targetImage.sprite = sprites[InputDetector.Instance.currentInputType - 1];
+            targetImage.enabled = true;
         }
         else
         {

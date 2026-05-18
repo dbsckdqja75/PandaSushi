@@ -98,7 +98,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3411464477401826198}
   - component: {fileID: 4523010472486305179}
-  - component: {fileID: 6272284187541648928}
+  - component: {fileID: 6768043198251116666}
   m_Layer: 5
   m_Name: Guide_SettingValue
   m_TagString: Untagged
@@ -134,20 +134,25 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8413323050751062477}
   m_CullTransparentMesh: 1
---- !u!111 &6272284187541648928
-Animation:
+--- !u!95 &6768043198251116666
+Animator:
+  serializedVersion: 7
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8413323050751062477}
   m_Enabled: 1
-  serializedVersion: 4
-  m_Animation: {fileID: 7400000, guid: 667deb3fd09c33c4daa2a3ee486bbb8a, type: 2}
-  m_Animations:
-  - {fileID: 7400000, guid: 667deb3fd09c33c4daa2a3ee486bbb8a, type: 2}
-  m_WrapMode: 0
-  m_PlayAutomatically: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: a2969429d3dc8e04d9ce9913c8679684, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 2
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
   m_AnimatePhysics: 0
-  m_UpdateMode: 0
-  m_CullingType: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0

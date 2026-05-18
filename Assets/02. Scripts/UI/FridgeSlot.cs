@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-public class FridgeSlot : MonoBehaviour
+public class FridgeSlot : MonoBehaviour, ICanvasSlot
 {
     int targetID = -1;
     
@@ -13,6 +13,11 @@ public class FridgeSlot : MonoBehaviour
     void Awake()
     {
         btn.onClick.AddListener(OnClick);
+    }
+
+    void OnDisable()
+    {
+        ResetSlot();
     }
 
     public void ResetSlot()
@@ -57,20 +62,33 @@ public class FridgeSlot : MonoBehaviour
         }
     }
 
-    void OnClick()
+    public void OnClick()
     {
         if (targetID != -1)
         {
-            EventManager.GetEvent<IngredientID>(EGameEvent.OnClickFridgeSlot).Invoke((IngredientID)targetID);
+            if (icon.enabled && btn != null && btn.interactable)
+            {
+                EventManager.GetEvent<IngredientID>(EGameEvent.OnClickFridgeSlot).Invoke((IngredientID)targetID);
+            }
         }
-        // else
-        // {
-        //     ResetSlot();
-        //     EventManager.GetEvent<bool>(EGameEvent.OnSelectFridge).Invoke(false);
-        // }
     }
 
-    #if UNITY_EDITOR
+    public bool CanSelect()
+    {
+        if (targetID != -1)
+        {
+            return icon.enabled && btn != null && btn.interactable;
+        }
+        
+        return false;
+    }
+    
+    public Transform GetTransform()
+    {
+        return this.transform;
+    }
+
+#if UNITY_EDITOR
     [ContextMenu("AutoFill")]
     void AutoFill()
     {

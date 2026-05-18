@@ -43,14 +43,6 @@ public class Player : MonoBehaviour
         ResetStamina();
     }
 
-    void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.O))
-        {
-            DrainStamina();
-        }
-    }
-
     void UpdateState(PlayerState newState)
     {
         currentState = newState;
@@ -118,7 +110,7 @@ public class Player : MonoBehaviour
         }
         else
         {
-            playerMotion.OnRelease();            
+            playerMotion.OnRelease();
         }
     }
 
@@ -249,8 +241,11 @@ public class Player : MonoBehaviour
 
     public void Unfreeze()
     {
-        UpdateState(PlayerState.Idle);
-        playerMotion.OnIdle();
+        if (currentState == PlayerState.Lock)
+        {
+            UpdateState(PlayerState.Idle);
+            playerMotion.OnIdle();
+        }
     }
 
     public bool CanMove()

@@ -5465,6 +5465,7 @@ GameObject:
   - component: {fileID: 5728484004206756556}
   - component: {fileID: 299486256958965489}
   - component: {fileID: 5450984396493272311}
+  - component: {fileID: 171462720456195284}
   m_Layer: 5
   m_Name: Settings Panel
   m_TagString: Untagged
@@ -5525,6 +5526,34 @@ MonoBehaviour:
   sfxVolumeValueText: {fileID: 7331678315091635984}
   screenModeVBox: {fileID: 7606166845494552733}
   screenResolutionBox: {fileID: 3269391581820112238}
+--- !u!114 &171462720456195284
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6440195804027572043}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da1f37664e164094db98fc40fcc07c5c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::InputTrigger
+  targetInput: {fileID: -5136522655326225439, guid: ebc5c457b9b1a614ea115b9325ec7da3, type: 3}
+  targetEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 5450984396493272311}
+        m_TargetAssemblyTypeName: Settings, Assembly-CSharp
+        m_MethodName: OnClickClose
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &6690449041471367848
 GameObject:
   m_ObjectHideFlags: 0
@@ -6765,6 +6794,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SettingGamepad
   content: {fileID: 797963933725636160}
   closeBtn: {fileID: 3926286885854771902}
+  closeInput: {fileID: 9104844963375473151, guid: ebc5c457b9b1a614ea115b9325ec7da3, type: 3}
 --- !u!1 &9034303787293003916
 GameObject:
   m_ObjectHideFlags: 0

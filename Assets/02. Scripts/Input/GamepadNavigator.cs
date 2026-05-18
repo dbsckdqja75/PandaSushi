@@ -3,64 +3,65 @@ using UnityEngine.InputSystem;
 
 public class GamepadNavigator : MonoBehaviour
 {
-    Transform spawnPivot;
-
     GamepadGuideElement currentFocusElement = null;
     RectTransform currentGuide = null;
+    RectTransform currentTarget = null;
 
-    LobbyActions lobbyActions;
+    CustomPlayerActions playerActions;
     
     void Awake()
     {
-        spawnPivot = FindAnyObjectByType<Canvas>().transform;
-        
-        lobbyActions = new LobbyActions();
-        lobbyActions.Player.Move.performed += SwitchElement;
-        lobbyActions.Player.MenuPrevious.started += (i) => SwitchElement(0);
-        lobbyActions.Player.MenuNext.started += (i) => SwitchElement(1);
-        lobbyActions.Player.MenuUp.started += (i) => SwitchElement(2);
-        lobbyActions.Player.MenuDown.started += (i) => SwitchElement(3);
-        lobbyActions.Player.Select.started += (i) => PressElement();
+        playerActions = new CustomPlayerActions();
+        playerActions.Player.MenuMove.performed += SwitchElement;
+        playerActions.Player.MenuPrevious.started += (i) => SwitchElement(0);
+        playerActions.Player.MenuNext.started += (i) => SwitchElement(1);
+        playerActions.Player.MenuUp.started += (i) => SwitchElement(2);
+        playerActions.Player.MenuDown.started += (i) => SwitchElement(3);
+        playerActions.Player.Select.started += (i) => PressElement();
 
         EventManager.GetEvent<GamepadGuideElement>(EGameEvent.OnChangeGamepadFoucs).Subscribe(ChangeFocusElement);
     }
 
-    void Start()
-    {
-        EventManager.GetEvent(EGameEvent.OnControlChange).Invoke();
-    }
-
     void OnEnable()
     {
-        lobbyActions.Player.Enable();
+        playerActions.Player.Enable();
     }
 
-    void OnDisable()
+    void OnDestroy()
     {
-        EventManager.GetEvent<GamepadGuideElement>(EGameEvent.OnChangeGamepadFoucs).Unsubscribe(ChangeFocusElement);
+        playerActions.Player.Disable();
         ResetFocus();
         
-        lobbyActions.Player.Disable();
+        EventManager.GetEvent<GamepadGuideElement>(EGameEvent.OnChangeGamepadFoucs).Unsubscribe(ChangeFocusElement);
+    }
+
+    void Update()
+    {
+        if (currentGuide != null && currentTarget != null)
+        {
+            currentGuide.position = currentTarget.position;
+            currentGuide.sizeDelta = currentTarget.sizeDelta;
+        }
     }
 
     void SwitchElement(InputAction.CallbackContext inputContext)
     {
         Vector2 inputValue = inputContext.ReadValue<Vector2>();
+        inputValue.x = Mathf.RoundToInt(inputValue.x);
+        inputValue.y = Mathf.RoundToInt(inputValue.y);
 
         int direction = 0;
-        if (Mathf.Abs(inputValue.x) > 0.5f)
+        if (inputValue.x != 0)
         {
             direction = (inputValue.x < 0) ? 0 : 1;
         }
         
-        if (Mathf.Abs(inputValue.y) > 0.5f)
+        if (inputValue.y != 0)
         {
             direction = (inputValue.y < 0) ? 3 : 2;
         }
         
         SwitchElement(direction);
-        
-        Debug.LogFormat("inputContext {0}", inputValue);
     }
 
     void SwitchElement(int direction)
@@ -86,33 +87,23 @@ public class GamepadNavigator : MonoBehaviour
             ResetFocus();
             return;
         }
-
-        if (element.gameObject.activeSelf == false)
+        
+        if (element == currentFocusElement || element.gameObject.activeSelf == false)
         {
             return;
         }
 
-        GameObject guidePrefab = null;
         if (currentFocusElement != null)
         {
-            if (element.GetGuidePreset() != currentFocusElement.GetGuidePreset())
-            {
-                guidePrefab = element.GetGuidePreset().GetPrefab();
-            }
-            
             currentFocusElement.OnDeselect();
-        }
-        else
-        {
-            guidePrefab = element.GetGuidePreset().GetPrefab();
         }
 
         currentFocusElement = element;
-        UpdateGuide(guidePrefab, currentFocusElement.GetRectTrf());
+        UpdateGuide(element.GetGuidePreset().GetPrefab(), currentFocusElement.transform);
         currentFocusElement.OnSelect();
     }
 
-    void UpdateGuide(GameObject prefab, RectTransform target)
+    void UpdateGuide(GameObject prefab, Transform target)
     {
         if (prefab != null)
         {
@@ -121,11 +112,13 @@ public class GamepadNavigator : MonoBehaviour
                 Destroy(currentGuide.gameObject);
             }
 
-            currentGuide = Instantiate(prefab, spawnPivot).GetComponent<RectTransform>();
+            currentGuide = Instantiate(prefab, target.root).GetComponent<RectTransform>();
         }
 
-        currentGuide.position = target.position;
-        currentGuide.sizeDelta = target.sizeDelta;
+        currentTarget = target.gameObject.GetComponent<RectTransform>();
+        currentGuide.position = currentTarget.position;
+        currentGuide.sizeDelta = currentTarget.sizeDelta;
+        currentGuide.SetParent(currentTarget.root);
     }
 
     public void ResetFocus()
@@ -133,16 +126,15 @@ public class GamepadNavigator : MonoBehaviour
         if (currentFocusElement != null)
         {
             currentFocusElement.OnDeselect();
+            currentFocusElement = null;
         }
 
         if (currentGuide != null)
         {
             Destroy(currentGuide.gameObject);
+            currentGuide = null;
         }
-    }
 
-    public LobbyActions GetLobbyActions()
-    {
-        return lobbyActions;
+        currentTarget = null;
     }
 }

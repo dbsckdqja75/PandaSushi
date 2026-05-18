@@ -26,11 +26,6 @@ public class ResultPanel : PanelUI
         negativeReviewsText.text = string.Format("-{0}", Mathf.Abs(data.negativeCount).ToString("N0"));
     }
 
-    protected override void Update()
-    {
-        return;
-    }
-
     public override void Close()
     {
         EventManager.GameStatus = EGameState.RoundPrepare;
