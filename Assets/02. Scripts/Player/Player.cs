@@ -23,6 +23,7 @@ public class Player : MonoBehaviour
 
     [SerializeField] GameObject ingredientPoint;
     
+    [SerializeField] GameObject aimGuide;
     [SerializeField] GameObject extraHealFxPrefab;
     [SerializeField] GameObject normalHealFxPrefab;
 
@@ -74,8 +75,6 @@ public class Player : MonoBehaviour
             controller.ForceUpdateTransform(fixedPos, fixedRot);
 
             playerMotion.OnAssemble();
-
-            // stage.StartMiniGame(platedID);
         }
     }
 
@@ -90,8 +89,10 @@ public class Player : MonoBehaviour
     public void StartAim()
     {
         UpdateState(PlayerState.Aim);
-        
         playerMotion.OnAim();
+        
+        controller.ForceClearHoverObject();
+        aimGuide.SetActive(true);
     }
 
     public void FinishAim(Vector3 throwPoint)
@@ -112,6 +113,9 @@ public class Player : MonoBehaviour
         {
             playerMotion.OnRelease();
         }
+        
+        controller.ForceClearHoverObject();
+        aimGuide.SetActive(false);
     }
 
     bool SurpriseEat()

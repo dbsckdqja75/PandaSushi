@@ -5,8 +5,6 @@ using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
-    bool isAiming = false;
-
     [SerializeField] float h, v;
     float lerpX, lerpZ;
     float latestH, latestV;
@@ -112,17 +110,12 @@ public class PlayerController : MonoBehaviour
 
     void OnInputPosition(InputAction.CallbackContext inputContext)
     {
-        if (player.IsAiming())
-        {
-            return;
-        }
-        
         Vector2 inputValue = inputContext.ReadValue<Vector2>();
         if (InputDetector.Instance.IsInputGamepad() == false)
         {
             inputPos = inputValue;
         }
-        else
+        else if(player.IsAiming() == false)
         {
             inputPos = Camera.main.WorldToScreenPoint(transform.position + transform.forward);
         }
@@ -143,7 +136,7 @@ public class PlayerController : MonoBehaviour
 
     void OnInputSelect()
     {
-        if(player.CanMove() == false)
+        if(player.CanMove() == false || player.IsAiming())
         {
             return;
         }
@@ -159,7 +152,7 @@ public class PlayerController : MonoBehaviour
         RaycastHit hit;
         Ray ray = Camera.main.ScreenPointToRay(inputPos);
         InteractionObject iObject = null;
-            
+        
         rayHitObj = Physics.Raycast(ray, out hit, Mathf.Infinity, rayTargetLayer) ? hit.collider.gameObject : null;
         if (rayHitObj != null && rayHitObj.TryGetComponent(out iObject))
         {
@@ -178,7 +171,7 @@ public class PlayerController : MonoBehaviour
             return;
         }
 
-        if (player.CanMove() == false)
+        if (player.CanMove() == false || player.IsAiming())
         {
             return;
         }
@@ -223,7 +216,7 @@ public class PlayerController : MonoBehaviour
 
     public void OnInputAim(bool onStart)
     {
-        if(player.CanMove() == false)
+        if(player.CanMove() == false || player.IsHolding())
         {
             return;
         }
@@ -333,7 +326,7 @@ public class PlayerController : MonoBehaviour
         if (hitInteractionObj)
         {
             hitInteractionObj.OnMouseOut();
-                
+            
             rayHitObj = null;
             hitInteractionObj = null;
             
