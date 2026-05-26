@@ -46,7 +46,10 @@ public partial class StageManager
                 HandleQuit();
                 return;
             case EGameState.Tutorial:
-                HandleTutorial();
+                if (prevState != EGameState.Tutorial)
+                {
+                    HandleTutorial();
+                }
                 return;
         }
 
@@ -289,7 +292,14 @@ public partial class StageManager
     
     void HandleTutorial()
     {
-        // TODO: 튜토리얼 게임 클래스로 StageManager와 별도로 임시 게임 진행 처리
+        player.Freeze();
+        
+        canvasManager.HideInfoPanel();
+        miniRecipeBox.SetActive(false);
+        earlyStartBox.SetActive(false);
+        earlyFinishBox.SetActive(false);
+        
+        Instantiate(tutorialPrefab);
     }
 
     void RefreshBonusState()

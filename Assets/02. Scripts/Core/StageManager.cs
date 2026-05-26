@@ -25,6 +25,7 @@ public partial class StageManager : MonoSingleton<StageManager>
     [SerializeField] DecoPoint[] decoPoints;
 
     [Space(10)]
+    [SerializeField] GameObject tutorialPrefab;
     [SerializeField] LevelConfigData[] levelConfigs;
     [SerializeField] GlobalState globalState;
 
@@ -83,6 +84,15 @@ public partial class StageManager : MonoSingleton<StageManager>
 
     void Start()
     {
+        if (PlayerPrefsManager.LoadData("FinishedTutorial", false, false) == false)
+        {
+            prevState = EGameState.RoundPrepare;
+            EventManager.GameStatus = EGameState.Tutorial;
+            prevState = EGameState.Tutorial;
+            
+            return;
+        }
+        
         EventManager.GameStatus = EGameState.RoundPrepare;
     }
 

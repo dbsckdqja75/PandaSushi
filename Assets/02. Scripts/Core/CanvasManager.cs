@@ -15,6 +15,7 @@ public class CanvasManager : MonoBehaviour
     [SerializeField] GameObject reviewPrefab; // 리뷰 관리
     [SerializeField] GameObject interiorPrefab; // 인테리어 관리
     [SerializeField] GameObject recipeBookPrefab; // 레시피북
+    [SerializeField] GameObject inputLayoutPrefab; // 레시피북
 
     GameObject foregroundPanel;
     GameObject currentMenuPanel;
@@ -29,6 +30,7 @@ public class CanvasManager : MonoBehaviour
         panelList.Add(EScreenState.PrepareReview, reviewPrefab);
         panelList.Add(EScreenState.PrepareInterior, interiorPrefab);
         panelList.Add(EScreenState.RecipeBook, recipeBookPrefab);
+        panelList.Add(EScreenState.InputLayout, inputLayoutPrefab);
 
         if (panelPivot.childCount > 0)
         {
@@ -56,6 +58,11 @@ public class CanvasManager : MonoBehaviour
         {
             infoPanel.SetActive(true);
         }
+    }
+
+    public void HideInfoPanel()
+    {
+        infoPanel.SetActive(false);
     }
 
     public void ClosePanel()
@@ -93,6 +100,6 @@ public class CanvasManager : MonoBehaviour
 
     public bool IsShowingPanel()
     {
-        return currentMenuPanel != null;
+        return currentMenuPanel != null || infoPanel.activeSelf == false;
     }
 }

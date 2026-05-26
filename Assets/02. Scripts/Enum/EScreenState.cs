@@ -9,4 +9,5 @@ public enum EScreenState
     PrepareReview,
     PrepareInterior,
     RecipeBook,
+    InputLayout,
 }

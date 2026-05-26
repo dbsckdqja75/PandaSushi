@@ -23,6 +23,12 @@ public class PausePanel : PanelUI
     {
         canvasManager.ShowSetting();
     }
+
+    public void OnClickInputLayout()
+    {
+        canvasManager.ShowPanel(EScreenState.InputLayout);
+        canvasManager.ShowPause(false);
+    }
     
     public void OnClickLeave()
     {
