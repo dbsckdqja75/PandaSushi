@@ -36,12 +36,16 @@ public class InputDetector : MonoSingleton<InputDetector>
 
     public void OnControlChanged(PlayerInput input)
     {
-        if (prevControlScheme == input.user.controlScheme.Value.name)
+        if (input != null && input.user.valid && input.user.controlScheme != null)
         {
-            return;
+            if (prevControlScheme == input.user.controlScheme.Value.name)
+            {
+                return;
+            }
+            
+            prevControlScheme = input.user.controlScheme.Value.name;
         }
-
-        prevControlScheme = input.user.controlScheme.Value.name;
+        
         if (prevControlScheme == "Gamepad")
         {
             if (Gamepad.current is DualShockGamepad || Gamepad.current is DualSenseGamepadHID)

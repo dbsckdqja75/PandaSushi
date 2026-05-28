@@ -17,6 +17,9 @@ public class MiniGamePrepQTE : MiniGame
     [Space(10)]
     [SerializeField] KeyCode[] keycodes;
     [SerializeField] TMP_Text[] keycodeTexts;
+    [SerializeField] GameObject[] gamepadGuides;
+    
+    [Space(10)]
     [SerializeField] RectTransform[] pivots;
     [SerializeField] CanvasGroup[] groups;
     
@@ -30,11 +33,13 @@ public class MiniGamePrepQTE : MiniGame
         knife.gameObject.SetActive(false);
         
         currentKeycodes.Clear();
-        var shuffledKeyCodeList = keycodes.OrderBy(x => Guid.NewGuid()).ToList();
+
+        var shuffledTargets = new int[4] { 0, 1, 2, 3 }.OrderBy(x => Guid.NewGuid()).ToList(); // W A S D
         for(int i = 0; i < 4; i++)
         {
-            currentKeycodes.Add(shuffledKeyCodeList[i]);
+            currentKeycodes.Add(keycodes[shuffledTargets[i]]);
             keycodeTexts[i].text = currentKeycodes[i].ToString();
+            gamepadGuides[shuffledTargets[i]].transform.position = keycodeTexts[i].transform.position;
         }
 
         currentTargetKeyIdx = 0;
@@ -54,6 +59,27 @@ public class MiniGamePrepQTE : MiniGame
         groups[currentTargetKeyIdx].alpha = 1;
     }
     
+    void OnEnable()
+    {
+        playerActions = new CustomPlayerActions();
+        playerActions.Player.PadNorth.started += (i) => InputKey(KeyCode.W);
+        playerActions.Player.PadWest.started += (i) => InputKey(KeyCode.A);
+        playerActions.Player.PadEast.started += (i) => InputKey(KeyCode.D);
+        playerActions.Player.PadSouth.started += (i) => InputKey(KeyCode.S);
+        
+        playerActions.Player.Enable();
+
+        RefreshGuide();
+        EventManager.GetEvent(EGameEvent.OnControlChange).Subscribe(RefreshGuide);
+    }
+    
+    void OnDisable()
+    {
+        playerActions.Player.Disable();
+        
+        EventManager.GetEvent(EGameEvent.OnControlChange).Unsubscribe(RefreshGuide);
+    }
+    
     protected override void FinishGame(bool isSuccess)
     {
         if (isSuccess)
@@ -71,6 +97,31 @@ public class MiniGamePrepQTE : MiniGame
         if(currentTargetKeyIdx < currentKeycodes.Count)
         {
             if(Input.GetKeyDown(currentKeycodes[currentTargetKeyIdx]))
+            {
+                InputKey(currentKeycodes[currentTargetKeyIdx]);
+            }
+        }
+    }
+
+    void RefreshGuide()
+    {
+        bool isOn = InputDetector.Instance.IsInputGamepad();
+        foreach (var guide in gamepadGuides)
+        {
+            guide.SetActive(isOn);
+        }
+        
+        foreach (var text in keycodeTexts)
+        {
+            text.gameObject.SetActive(!isOn);
+        }
+    }
+
+    void InputKey(KeyCode inputKey)
+    {
+        if (currentTargetKeyIdx < currentKeycodes.Count)
+        {
+            if (currentKeycodes[currentTargetKeyIdx] == inputKey)
             {
                 NextKey();
             }

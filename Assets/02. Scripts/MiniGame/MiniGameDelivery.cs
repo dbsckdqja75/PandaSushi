@@ -2,6 +2,7 @@ using System;
 using System.Linq;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class MiniGameDelivery : MiniGame
 {
@@ -35,6 +36,24 @@ public class MiniGameDelivery : MiniGame
         UpdateGuide();
     }
 
+    void OnEnable()
+    {
+        playerActions = new CustomPlayerActions();
+        playerActions.Player.MenuMove.performed += InputDirection;
+        playerActions.Player.PadPointer.performed += InputDirection;
+        
+        playerActions.Player.MenuNext.started += (i) => MoveRider(3);
+        playerActions.Player.MenuPrevious.started += (i) => MoveRider(2);
+        playerActions.Player.MenuUp.started += (i) => MoveRider(0);
+        playerActions.Player.MenuDown.started += (i) => MoveRider(1);
+        playerActions.Player.Enable();
+    }
+    
+    void OnDisable()
+    {
+        playerActions.Player.Disable();
+    }
+
     protected override void FinishGame(bool isSuccess)
     {
         if (isSuccess)
@@ -66,6 +85,26 @@ public class MiniGameDelivery : MiniGame
                 MoveRider(v == 1 ? 0 : 1); // 상하
             }
         }
+    }
+
+    void InputDirection(InputAction.CallbackContext inputContext)
+    {
+        Vector2 inputValue = inputContext.ReadValue<Vector2>();
+        inputValue.x = Mathf.RoundToInt(inputValue.x);
+        inputValue.y = Mathf.RoundToInt(inputValue.y);
+
+        int direction = 0;
+        if (inputValue.x != 0)
+        {
+            direction = (inputValue.x < 0) ? 2 : 3;
+        }
+        
+        if (inputValue.y != 0)
+        {
+            direction = (inputValue.y < 0) ? 1 : 0;
+        }
+
+        MoveRider(direction);
     }
 
     void MoveRider(int direction)

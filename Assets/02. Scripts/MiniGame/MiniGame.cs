@@ -12,6 +12,8 @@ public class MiniGame : MonoBehaviour
     [Space(10)]
     [SerializeField] TMP_Text timerText;
     
+    protected CustomPlayerActions playerActions;
+    
     Action<bool> onFinish;
 
     public virtual void Init(Action<bool> finishCallback)

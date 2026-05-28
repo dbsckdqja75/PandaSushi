@@ -56,10 +56,23 @@ public class MiniGamePrepSpace : MiniGame
         clearFx.SetActive(false);
         failFx.SetActive(false);
 
-        guideText.text = "[SPACE]";
+        guideText.text = "CUT!";
         
         pingPongTimer = 0;
         isPingPong = true;
+    }
+    
+    void OnEnable()
+    {
+        playerActions = new CustomPlayerActions();
+        playerActions.Player.RightTrigger.started += (i) => InputPress();
+        
+        playerActions.Player.Enable();
+    }
+    
+    void OnDisable()
+    {
+        playerActions.Player.Disable();
     }
     
     protected override void FinishGame(bool isSuccess)
@@ -90,6 +103,14 @@ public class MiniGamePrepSpace : MiniGame
     void UpdateInput()
     {
         if(Input.GetKeyDown(KeyCode.Space))
+        {
+            InputPress();
+        }
+    }
+
+    void InputPress()
+    {
+        if (isPingPong)
         {
             isPingPong = false;
 

@@ -5,10 +5,9 @@ public class EnvDoor : MonoBehaviour
     bool isBlocking = false;
     
     [SerializeField] Animator animator;
-    
-    // FIXME: FxPool로 관리
-    [SerializeField] GameObject testFX1;
-    [SerializeField] GameObject testFX2;
+
+    [SerializeField] Transform fxPoint;
+    [SerializeField] GameObject kickFxPrefab;
 
     public void Open()
     {
@@ -51,17 +50,13 @@ public class EnvDoor : MonoBehaviour
         animator.SetBool("isOpen" , false);
         animator.SetTrigger("OnKick");
         
-        testFX1.SetActive(true);
-        testFX2.SetActive(true);
+        ObjectPool.Instance.SpawnFX(kickFxPrefab, fxPoint.position, fxPoint.rotation, fxPoint).Hide(2f, true);
     }
 
     public void ResetMoiton()
     {
         animator.ResetTrigger("OnKick");
         animator.SetTrigger("OnReset");
-        
-        testFX1.SetActive(false);
-        testFX2.SetActive(false);
     }
 
     public bool IsBlocking()
