@@ -325,6 +325,15 @@ public partial class @CustomPlayerActions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""LeftStick"",
+                    ""type"": ""Value"",
+                    ""id"": ""bd154acb-6bf0-4d87-b592-f660f58f97f7"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
                 }
             ],
             ""bindings"": [
@@ -550,6 +559,17 @@ public partial class @CustomPlayerActions: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
+                    ""id"": ""40878eb7-c75f-4545-a203-23a57f9680e1"",
+                    ""path"": ""<Gamepad>/leftShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""LeftBumper"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
                     ""id"": ""904f1926-9a47-46fb-95bd-301e8759e73c"",
                     ""path"": ""<XInputController>/leftShoulder"",
                     ""interactions"": """",
@@ -578,6 +598,17 @@ public partial class @CustomPlayerActions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": "";Gamepad"",
                     ""action"": ""LeftBumper"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b3eb341a-4357-4df3-8664-88565001f6da"",
+                    ""path"": ""<Gamepad>/rightShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""RightBumper"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -831,6 +862,17 @@ public partial class @CustomPlayerActions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": "";Keyboard&Mouse"",
                     ""action"": ""Escape"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""9eb4ebc2-5482-462d-a85d-0ab2fef8a6d4"",
+                    ""path"": ""<Gamepad>/leftStick"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""LeftStick"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -1444,6 +1486,7 @@ public partial class @CustomPlayerActions: IInputActionCollection2, IDisposable
         m_Player_LeftTrigger = m_Player.FindAction("LeftTrigger", throwIfNotFound: true);
         m_Player_RightTrigger = m_Player.FindAction("RightTrigger", throwIfNotFound: true);
         m_Player_Escape = m_Player.FindAction("Escape", throwIfNotFound: true);
+        m_Player_LeftStick = m_Player.FindAction("LeftStick", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -1563,6 +1606,7 @@ public partial class @CustomPlayerActions: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_LeftTrigger;
     private readonly InputAction m_Player_RightTrigger;
     private readonly InputAction m_Player_Escape;
+    private readonly InputAction m_Player_LeftStick;
     /// <summary>
     /// Provides access to input actions defined in input action map "Player".
     /// </summary>
@@ -1679,6 +1723,10 @@ public partial class @CustomPlayerActions: IInputActionCollection2, IDisposable
         /// </summary>
         public InputAction @Escape => m_Wrapper.m_Player_Escape;
         /// <summary>
+        /// Provides access to the underlying input action "Player/LeftStick".
+        /// </summary>
+        public InputAction @LeftStick => m_Wrapper.m_Player_LeftStick;
+        /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
         public InputActionMap Get() { return m_Wrapper.m_Player; }
@@ -1782,6 +1830,9 @@ public partial class @CustomPlayerActions: IInputActionCollection2, IDisposable
             @Escape.started += instance.OnEscape;
             @Escape.performed += instance.OnEscape;
             @Escape.canceled += instance.OnEscape;
+            @LeftStick.started += instance.OnLeftStick;
+            @LeftStick.performed += instance.OnLeftStick;
+            @LeftStick.canceled += instance.OnLeftStick;
         }
 
         /// <summary>
@@ -1871,6 +1922,9 @@ public partial class @CustomPlayerActions: IInputActionCollection2, IDisposable
             @Escape.started -= instance.OnEscape;
             @Escape.performed -= instance.OnEscape;
             @Escape.canceled -= instance.OnEscape;
+            @LeftStick.started -= instance.OnLeftStick;
+            @LeftStick.performed -= instance.OnLeftStick;
+            @LeftStick.canceled -= instance.OnLeftStick;
         }
 
         /// <summary>
@@ -2353,6 +2407,13 @@ public partial class @CustomPlayerActions: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnEscape(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "LeftStick" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnLeftStick(InputAction.CallbackContext context);
     }
     /// <summary>
     /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "UI" which allows adding and removing callbacks.

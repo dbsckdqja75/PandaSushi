@@ -239,6 +239,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "LeftStick",
+                    "type": "Value",
+                    "id": "bd154acb-6bf0-4d87-b592-f660f58f97f7",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
                 }
             ],
             "bindings": [
@@ -464,6 +473,17 @@
                 },
                 {
                     "name": "",
+                    "id": "40878eb7-c75f-4545-a203-23a57f9680e1",
+                    "path": "<Gamepad>/leftShoulder",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "LeftBumper",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "904f1926-9a47-46fb-95bd-301e8759e73c",
                     "path": "<XInputController>/leftShoulder",
                     "interactions": "",
@@ -492,6 +512,17 @@
                     "processors": "",
                     "groups": ";Gamepad",
                     "action": "LeftBumper",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "b3eb341a-4357-4df3-8664-88565001f6da",
+                    "path": "<Gamepad>/rightShoulder",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "RightBumper",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -745,6 +776,17 @@
                     "processors": "",
                     "groups": ";Keyboard&Mouse",
                     "action": "Escape",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "9eb4ebc2-5482-462d-a85d-0ab2fef8a6d4",
+                    "path": "<Gamepad>/leftStick",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Gamepad",
+                    "action": "LeftStick",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
