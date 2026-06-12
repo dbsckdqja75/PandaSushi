@@ -15,15 +15,18 @@ Unity로 개발한 <b>쿠킹 시뮬레이터 게임 프로젝트</b>입니다.<b
 여러 레시피들을 요리하고 재료들을 조합하며, 까다롭고 재밌는 돌발 상황들도 마주하면서<br>
 식당을 운영하여 종합 리뷰 별점 5개를 채우는 것이 게임의 목표입니다.<br>
 
-<br><br>
+<br>
 
+### 개발 정보
 + 개발 기간 : 2026.03 ~ 2026.05
 + 개발 인원 : 2인
 + 타겟 플랫폼 : Windows, macOS, Linux/SteamOS
 
 <br>
 
-***
++ 기획 의도 : 무료 에셋을 최대한으로 활용하여 코믹 요소를 섞은 게임을 만들어보기
+
+<br>
 
 ## 팀원
 | 윤창범 | 이상화 | 
@@ -35,9 +38,9 @@ Unity로 개발한 <b>쿠킹 시뮬레이터 게임 프로젝트</b>입니다.<b
 
 ## 개발 환경
 + Unity (6000.3.7f1 LTS)
-+ JetBrains Rider (2025.2.2.1)
++ Blender / JetBrains Rider (2025.2.2.1)
 + C#
-+ Windwos / macOS
++ Windows / macOS
 
 <br>
 
@@ -46,7 +49,7 @@ Unity로 개발한 <b>쿠킹 시뮬레이터 게임 프로젝트</b>입니다.<b
 |:---:|:---|
 | 싱글톤 패턴 | [MonoSingleton&lt;T&gt;](https://github.com/dbsckdqja75/PandaSushi/blob/main/Assets/02.%20Scripts/Pattern/MonoSingleton.cs) 구현으로 주요 매니저 클래스 관리 <br> [StageManager](https://github.com/dbsckdqja75/PandaSushi/blob/main/Assets/02.%20Scripts/Core/StageManager.cs), [SoundManager](https://github.com/dbsckdqja75/PandaSushi/blob/main/Assets/02.%20Scripts/Core/SoundManager.cs), [CurrencyManager](https://github.com/dbsckdqja75/PandaSushi/blob/main/Assets/02.%20Scripts/Core/CurrencyManager.cs), [LocalizationManager](https://github.com/dbsckdqja75/PandaSushi/blob/main/Assets/02.%20Scripts/Core/LocalizationManager.cs) |
 | 상태 패턴 | 분할 클래스 구현으로 [StageManager.State](https://github.com/dbsckdqja75/PandaSushi/blob/main/Assets/02.%20Scripts/Core/StageManager.State.cs)를 통해 게임의 흐름을 [EGameState](https://github.com/dbsckdqja75/PandaSushi/blob/main/Assets/02.%20Scripts/Enum/EGameState.cs)에 따라 상태별 로직 관리 |
-| 이벤트 기반 아키텍처 | [EventManager](https://github.com/dbsckdqja75/PandaSushi/blob/main/Assets/02.%20Scripts/Core/EventManager.cs)와 [PandaEvent](https://github.com/dbsckdqja75/PandaSushi/blob/main/Assets/02.%20Scripts/Core/PandaEvent.cs) 구현으로 클래스 간의 의존성을 낮추고 <br> [EGameEvent](https://github.com/dbsckdqja75/PandaSushi/blob/main/Assets/02.%20Scripts/Enum/EGameEvent.cs)로 게임 상태 변화와 업데이트를 이벤트로 실시간 관리 |
+| 이벤트 기반 아키텍처 | [EventManager](https://github.com/dbsckdqja75/PandaSushi/blob/main/Assets/02.%20Scripts/Core/EventManager.cs)와 [PandaEvent](https://github.com/dbsckdqja75/PandaSushi/blob/main/Assets/02.%20Scripts/Core/PandaEvent.cs) 구현으로 클래스 간의 결합도를 낮추고 <br> [EGameEvent](https://github.com/dbsckdqja75/PandaSushi/blob/main/Assets/02.%20Scripts/Enum/EGameEvent.cs)로 게임 상태 변화와 업데이트를 이벤트로 실시간 관리 |
 | 오브젝트 풀링 | [ObjectPool](https://github.com/dbsckdqja75/PandaSushi/blob/main/Assets/02.%20Scripts/Core/ObjectPool.cs) 구현으로 손님, 라이더, FX 등 자주 생성되고 파괴되는 객체들은 재사용 관리 |
 | 데이터 저장 & 암호화 | 중요 변수 또는 저장 데이터들을 [PlayerPrefsManager](https://github.com/dbsckdqja75/PandaSushi/blob/main/Assets/02.%20Scripts/Core/PlayerPrefsManager.cs), [EncryptAES](https://github.com/dbsckdqja75/PandaSushi/blob/main/Assets/02.%20Scripts/Extension/EncryptAES.cs) 구현으로 **AES암호화**하여 관리 |
 | 레시피 데이터 관리 | **ScriptableObject** 기반으로 [RecipeData](https://github.com/dbsckdqja75/PandaSushi/blob/main/Assets/02.%20Scripts/Data/RecipeData.cs), [IngredientData](https://github.com/dbsckdqja75/PandaSushi/blob/main/Assets/02.%20Scripts/Data/IngredientData.cs), [MixData](https://github.com/dbsckdqja75/PandaSushi/blob/main/Assets/02.%20Scripts/Data/MixData.cs)를 구현하여 레시피/재료/조합 정보 관리 |
@@ -90,6 +93,10 @@ Unity로 개발한 <b>쿠킹 시뮬레이터 게임 프로젝트</b>입니다.<b
 
 <details>
   <summary>게임패드 조작/가이드 구현</summary>
+</details>
+
+<details>
+  <summary>커스텀 쉐이더 구성</summary>
 </details>
 
 <br>
@@ -159,13 +166,37 @@ graph TD
 
 프로젝트는 기본적으로 **매니저 패턴**과 **이벤트 기반 아키텍처**를 토대로 설계했습니다.<br>
 <br>
-자주 발생되어 호출되는 메서드들은 EventManager를 통해 관리 및 호출할 수 있도록 구현했고,<br>
-핵심이 되는 주요 매니저 클래스들만 MonoSingleton을 통해 전역적으로 접근할 수 있도록 구현했습니다.
+자주 발생되어 호출되는 메서드들은 [EventManager](https://github.com/dbsckdqja75/PandaSushi/blob/main/Assets/02.%20Scripts/Core/EventManager.cs)를 통해 관리 및 호출할 수 있도록 구현했고,<br>
+핵심이 되는 주요 매니저 클래스들만 [MonoSingleton](https://github.com/dbsckdqja75/PandaSushi/blob/main/Assets/02.%20Scripts/Pattern/MonoSingleton.cs)을 통해 전역적으로 접근할 수 있도록 구현했습니다.
 
 초기에 설계를 확정짓고 진행한 구조가 아닌, 실제로 구현을 하면서 플레이 환경 규모를 생각했을때<br>
 현재의 구조가 가장 적합하고 수정이 용이한 설계라고 생각하여 그대로 채택하였습니다.
 
-<br><br>
+<br>
+
+## 기술적 이슈와 아쉬운 점
++ **주요 클래스 구조 개선 미흡**<br>
+> 플레이 가능한 수준까지 개발을 진행하고, 배포할때까지 지속적으로 타협하는 구조로 리팩토링 및 개선을 진행했으나 <br>
+여전히 핵심 클래스인 [StageManager](https://github.com/dbsckdqja75/PandaSushi/blob/main/Assets/02.%20Scripts/Core/StageManager.cs)와 [OrderManager](https://github.com/dbsckdqja75/PandaSushi/blob/main/Assets/02.%20Scripts/Core/OrderManager.cs)와 같은 일부 클래스에 역할과 책임이 과하게 물려 있는 상태
+
+<br>
+
++ **리소스 관리 구조 미흡**<br>
+> 리소스가 엄청나게 많은 프로젝트는 아니지만 일반적인 변수, 프리팹, 사운드 등 참조해야할 게임 리소스 데이터들을<br>
+**Addressables**나 **LoadAsync**를 활용하여 처음부터 구조를 개선했으면 좋았겠다 라는 아쉬움이 있음<br>
+
+<br>
+
++ **애니메이션 구성 디테일**<br>
+> 크게 고려하지 않았던 게임패드 조작 대응 및 가이드 구현을 마지막에 급하게 진행하면서 UI 디자인과<br>
+관련 애니메이션 모션들을 다듬지 못했는데, 실제 플레이에서 엉성하다고 느껴지는 부분이 보일때가 있어서 다소 아쉬움이 있음<br>
+
+<br>
+
+## 트레일러 & 플레이 영상
+> 아직 카메라 감독님을 구하지 못한 이슈가..
+
+<br>
 
 ## 게임 다운로드
 ### <a href="https://github.com/dbsckdqja75/PandaSushi/releases/download/v1.3/PandaSushi_Windows.zip">Github 배포 파일 (Windows)</a>
