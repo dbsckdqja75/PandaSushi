@@ -1,10 +1,11 @@
 # PandaSushi
 
 <div align="center">
+  <img src="https://github.com/user-attachments/assets/3fb98913-78f5-40ae-b9e9-0a026ad918ff" width="99%" height="99%"/>
   <img src="https://github.com/user-attachments/assets/75d79282-d651-4cb7-9b03-25a11d2ee744" width="49%" height="49%"/>
   <img src="https://github.com/user-attachments/assets/32f7e9dc-2733-47f0-9e65-8dd71343b275" width="49%" height="49%"/>
-  <img alt="Image Sequence_035_0025" src="https://github.com/user-attachments/assets/648e289f-4ff4-4b58-8594-2c9efed874c4" width="49%" height="49%"/>
-  <img alt="Image Sequence_037_0000" src="https://github.com/user-attachments/assets/0d68d07f-b3ec-408f-a7ff-17e72d2f4622" width="49%" height="49%"/>
+  <img src="https://github.com/user-attachments/assets/648e289f-4ff4-4b58-8594-2c9efed874c4" width="49%" height="49%"/>
+  <img src="https://github.com/user-attachments/assets/0d68d07f-b3ec-408f-a7ff-17e72d2f4622" width="49%" height="49%"/>
 </div>
 
 <br>
@@ -183,6 +184,7 @@ graph TD
 + 파티클 이펙트와 사운드 효과음은 유료 에셋을 수정 및 활용하였으며, **배경음악은 생성형 AI**를 활용하여 사용했습니다.
 + **게임패드 조작 대응**을 지원하기 때문에 **키보드/게임패드 조작 전환**이나 **스팀덱 환경**에서도 플레이가 가능합니다.
 + 저장소에 반영된 **AES 암호화 키**는 테스트 더미 키값으로 실제 실행 환경에는 다른 키값이 적용되어있습니다.
++ 기능/이펙트 유료 에셋 패키지의 실제 리소스는 저장소에 포함되어있지 않습니다.
 + 기본 에셋을 제외한 **일부 재료, 캐릭터 부착 오브젝트, 라이더 오토바이 등** 은 직접 **Blender**로 모델링하여 활용했습니다.
 + 직접 작업한 리소스들에 대한 관련 정보는 별도로 정리한 [위키 문서](https://github.com/dbsckdqja75/PandaSushi/wiki/%EB%A6%AC%EC%86%8C%EC%8A%A4-%EC%9E%91%EC%97%85)에서 확인하실 수 있습니다.
 
