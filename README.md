@@ -73,7 +73,6 @@ Unity로 개발한 <b>쿠킹 시뮬레이터 게임 프로젝트</b>입니다.<b
 - [손님](https://github.com/dbsckdqja75/PandaSushi/wiki/%EC%86%90%EB%8B%98)
 - [카메라](https://github.com/dbsckdqja75/PandaSushi/wiki/%EC%B9%B4%EB%A9%94%EB%9D%BC)
 - [게임 흐름 관리](https://github.com/dbsckdqja75/PandaSushi/wiki/%EA%B2%8C%EC%9E%84-%ED%9D%90%EB%A6%84-%EA%B4%80%EB%A6%AC)
-- [재고 관리 & 인테리어](https://github.com/dbsckdqja75/PandaSushi/wiki/%EC%9E%AC%EA%B3%A0-%EA%B4%80%EB%A6%AC-&-%EC%9D%B8%ED%85%8C%EB%A6%AC%EC%96%B4)
 - [UI 관리 & 제어](https://github.com/dbsckdqja75/PandaSushi/wiki/UI-%EA%B4%80%EB%A6%AC-&-%EC%A0%9C%EC%96%B4)
 - [사운드 시스템](https://github.com/dbsckdqja75/PandaSushi/wiki/%EC%82%AC%EC%9A%B4%EB%93%9C-%EC%8B%9C%EC%8A%A4%ED%85%9C)
 - [설정](https://github.com/dbsckdqja75/PandaSushi/wiki/%EC%84%A4%EC%A0%95)
