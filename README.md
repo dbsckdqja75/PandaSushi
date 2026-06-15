@@ -37,7 +37,7 @@ Unity로 개발한 <b>쿠킹 시뮬레이터 게임 프로젝트</b>입니다.<b
 ## 프로젝트 팀원 (Team.Campfire)
 | 윤창범 | 이상화 | 
 |:---:|:---:|
-| <img src="https://avatars.githubusercontent.com/u/22255667?v=4" width="120" height="120"/> | <img src="https://avatars.githubusercontent.com/u/83414122?v=4" width="120" height="120"/> | 
+| <a href="https://github.com/dbsckdqja75"><img src="https://avatars.githubusercontent.com/u/22255667?v=4" width="120" height="120"/></a> | <a href="https://github.com/dltkdghk508"><img  src="https://avatars.githubusercontent.com/u/83414122?v=4" width="120" height="120"/></a> | 
 | **프로그래밍** <br> 3D 모델링 <br> UI 디자인 | **2D 아트** <br> UI 디자인 | 
 
 <br>
