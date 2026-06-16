@@ -59,7 +59,7 @@ Unity로 개발한 <b>쿠킹 시뮬레이터 게임 프로젝트</b>입니다.<b
 | 오브젝트 풀링 | [ObjectPool](https://github.com/dbsckdqja75/PandaSushi/blob/main/Assets/02.%20Scripts/Core/ObjectPool.cs) 구현으로 손님, 라이더, FX 등 자주 생성되고 파괴되는 객체들은 재사용 관리 |
 | 데이터 저장 <br> & <br> 암호화 | 중요 변수 또는 저장 데이터들을 [PlayerPrefsManager](https://github.com/dbsckdqja75/PandaSushi/blob/main/Assets/02.%20Scripts/Core/PlayerPrefsManager.cs), [EncryptAES](https://github.com/dbsckdqja75/PandaSushi/blob/main/Assets/02.%20Scripts/Extension/EncryptAES.cs) 구현으로 **AES암호화**하여 관리 |
 | 레시피 데이터 관리 | **ScriptableObject** 기반으로 [RecipeData](https://github.com/dbsckdqja75/PandaSushi/blob/main/Assets/02.%20Scripts/Data/RecipeData.cs), [IngredientData](https://github.com/dbsckdqja75/PandaSushi/blob/main/Assets/02.%20Scripts/Data/IngredientData.cs), [MixData](https://github.com/dbsckdqja75/PandaSushi/blob/main/Assets/02.%20Scripts/Data/MixData.cs)를 구현하여 <br> 레시피/재료/조합 정보 관리 |
-| 사운드 관리 | [SoundManager](https://github.com/dbsckdqja75/PandaSushi/blob/main/Assets/02.%20Scripts/Core/SoundManager.cs) 구현으로 인게임의 모든 BGM과 SFX 리소스 풀링 관리 및 Coroutine 기반으로 <br> Volume, Mute, CrossFade 제어 |
+| 사운드 관리 | [SoundManager](https://github.com/dbsckdqja75/PandaSushi/blob/main/Assets/02.%20Scripts/Core/SoundManager.cs) 구현으로 인게임의 모든 BGM과 SFX 리소스 관리 및 Coroutine 기반으로 <br> Volume, Mute, CrossFade 제어 |
 | 리소스 관리 | [PandaResources](https://github.com/dbsckdqja75/PandaSushi/blob/main/Assets/02.%20Scripts/Core/PandaResources.cs) 구현으로 프리팹, 사운드, 아이콘 등의 자주 로드되는 리소스들을 참조하도록 관리 |
 | 다국어 체계 | **Unity Localization** 패키지 기반으로 [LocalizationManager](https://github.com/dbsckdqja75/PandaSushi/blob/main/Assets/02.%20Scripts/Core/LocalizationManager.cs) 구현 및 여러 텍스트/이미지 <br> 언어별 동적 관리 |
 
